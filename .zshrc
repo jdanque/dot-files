@@ -23,7 +23,7 @@ man() {
 TERM=xterm-256color
 
 # Aliases
-alias ls="colorls -A"   
+alias lc="colorls -A"   
 
 ## Use a long listing format ##
 alias ll='ls -la'
