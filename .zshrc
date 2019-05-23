@@ -68,7 +68,7 @@ alias gitac='git add -A;git commit -m'
 alias gitc='git clone'
 alias gitpom='git pull origin master'
 alias gitpo='git pull origin'
-alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s  %+b"'
+alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s <br/> %+b"'
 
 ##jump servers##
 alias jump_dev='ssh -A jmdanque@10.133.179.243'
