@@ -6,6 +6,7 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 export M2_HOME=/Users/jobo.danque/DevApps/apache-maven-3.3.9
 export PATH=$PATH:$M2_HOME/bin
 export PATH=/home/ec2-user/.local/bin:$PATH
+export GITCHANGELOG_CONFIG_FILENAME=/Users/jobo.danque/_Personal/git/_github/dot-files/.gitchangelog.rc
 
 # Coloured man pages using less as pager
 man() {
@@ -68,7 +69,7 @@ alias gitac='git add -A;git commit -m'
 alias gitc='git clone'
 alias gitpom='git pull origin master'
 alias gitpo='git pull origin'
-alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s <br/> %+b"'
+#alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s <br/> %+b"'
 
 ##jump servers##
 alias jump_dev='ssh -A jmdanque@10.133.179.243'
