@@ -44,10 +44,6 @@ alias gitpom='git pull origin master'
 alias gitpo='git pull origin'
 alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s <br/> %+b"'
 
-##jump servers##
-alias jump_dev='ssh -A jmdanque@10.133.179.243'
-alias jump_test='ssh -A viewer@50.112.56.135'
-alias jump_sandbox='ssh -A viewer@52.221.47.143'
 
 alias tamad='bash $HOME/procrastinate.sh'
 
