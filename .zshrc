@@ -1,34 +1,28 @@
 /usr/bin/ssh-add -k ~/.ssh/id_rsa
 
-eval "$(rbenv init -)"
+export ZSH="/Users/jobodanque/.oh-my-zsh"
 
-export JAVA_HOME=$(/usr/libexec/java_home)
-export M2_HOME=/Users/jobo.danque/DevApps/apache-maven-3.3.9
-export PATH=$PATH:$M2_HOME/bin
-export PATH=/home/ec2-user/.local/bin:$PATH
-export GITCHANGELOG_CONFIG_FILENAME=/Users/jobo.danque/_Personal/git/_github/dot-files/.gitchangelog.rc
+ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="robbyrussell"
 
-# Coloured man pages using less as pager
-man() {
-    env \
-	      LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-	      LESS_TERMCAP_md=$(printf "\e[1;31m") \
-	      LESS_TERMCAP_me=$(printf "\e[0m") \
-	      LESS_TERMCAP_se=$(printf "\e[0m") \
-	      LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-	      LESS_TERMCAP_ue=$(printf "\e[0m") \
-	      LESS_TERMCAP_us=$(printf "\e[1;36m") \
-	      man "$@"
-}
+plugins=(
+  git
+  gradle
+  ng
+  npm
+  yarn
+  osx)
 
-TERM=xterm-256color
+source $ZSH/oh-my-zsh.sh
 
+##############
 # Aliases
-alias lc="colorls -A"   
+##############
+alias lc="colorls -A"
 
 ## Use a long listing format ##
 alias ll='ls -la'
- 
+
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
 
@@ -39,7 +33,7 @@ alias fgrep='fgrep --color=auto'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
- 
+
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
 alias ...='cd ../../../'
@@ -71,106 +65,51 @@ alias gitpom='git pull origin master'
 alias gitpo='git pull origin'
 #alias gitchangelog='echo "<h1>Changelog:</h1>"; git log --no-merges --invert-grep --grep=maven-release-plugin --pretty=format:"* %h %s <br/> %+b"'
 
-##jump servers##
-alias jump_dev='ssh -A jmdanque@10.133.179.243'
-alias jump_test='ssh -A viewer@50.112.56.135'
-alias jump_sandbox='ssh -A viewer@52.221.47.143'
-
-alias tamad='bash $HOME/procrastinate.sh'
-
-cd()
-{
+cd(){
     builtin cd $@
     ls
 }
 
+##############
+# Powerlevel9k Theme
+##############
 
-
-
-
-# Prompt settings
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-#POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%K{white}%k"
-POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="╰─%K{green}%F{black}$0%K{green}%F{black} \uf155 %f%F{green}%k\ue0b0%f "
-
-# Separators
-POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\ue0b0'
-POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\ue0b1'
-#POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\ue0b2'
-#POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\ue0b7'
-#POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\ue0b8 '
-#POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR=$'\ue0b8 '
-POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\ue0b6'
-POWERLEVEL9K_RIGHT_SUBSEGMENT_SEPARATOR=$'\ue0b6'
-
-# Dir colours
-POWERLEVEL9K_DIR_HOME_BACKGROUND='009'
-POWERLEVEL9K_DIR_HOME_FOREGROUND='black'
-
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='196'
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='232'
-
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='009'
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='black'
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=5
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"
-
-# OS segment
-POWERLEVEL9K_OS_ICON_BACKGROUND='black'
-POWERLEVEL9K_LINUX_ICON='%F{cyan} \uf303 %F{white} arch %F{cyan}linux%f'
-
-# VCS icons
-POWERLEVEL9K_VCS_GIT_ICON=$'\ue60a '
-POWERLEVEL9K_VCS_GIT_GITHUB_ICON=$'\uf113 '
-POWERLEVEL9K_VCS_GIT_GITLAB_ICON=$'\uf296 '
-POWERLEVEL9K_VCS_BRANCH_ICON=$'\uF126 '
-POWERLEVEL9K_VCS_STAGED_ICON=$'\uf055'
-POWERLEVEL9K_VCS_UNSTAGED_ICON=$'\uf440'
-POWERLEVEL9K_VCS_UNTRACKED_ICON=$'\uf00d'
-POWERLEVEL9K_VCS_INCOMING_CHANGES_ICON=$'\uf0ab '
-POWERLEVEL9K_VCS_OUTGOING_CHANGES_ICON=$'\uf0aa '
-
-# VCS colours
-POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='blue'
-POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='black'
-POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='green'
-POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='black'
-POWERLEVEL9K_VCS_CLEAN_BACKGROUND='green1'
-POWERLEVEL9K_VCS_CLEAN_FOREGROUND='black'
-
-# VCS CONFIG
-POWERLEVEL9K_SHOW_CHANGESET=false
-
-# Status
-POWERLEVEL9K_OK_ICON=$'\uf164'
-POWERLEVEL9K_FAIL_ICON=$'\uf165'
-POWERLEVEL9K_CARRIAGE_RETURN_ICON=$'\uf165'
-
-# Battery
+POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
+POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
 POWERLEVEL9K_BATTERY_CHARGING='yellow'
 POWERLEVEL9K_BATTERY_CHARGED='green'
 POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
-POWERLEVEL9K_BATTERY_ICON='\uf1e6'
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
+#POWERLEVEL9K_BATTERY_STAGES=($'\u2581 ' $'\u2582 ' $'\u2583 ' $'\u2584 ' $'\u2585 ' $'\u2586 ' $'\u2587 ' $'\u2588 ')
+POWERLEVEL9K_BATTERY_ICON='\uf1e6 '
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+#POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="❱ "
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF054%F{073}\uF054%F{109}\uF054%f "
+POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
 
-# Time
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M \uf073 %d/%m/%y}"
-POWERLEVEL9K_TIME_BACKGROUND='white'
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon context dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery dir_writable ip vpn_ip ram load background_jobs)
 
-# User with skull
-user_with_skull() {
-    echo -n "\ufb8a $(whoami)"
-}
-POWERLEVEL9K_CUSTOM_USER="user_with_skull"
+#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_last"
+#POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
 
-
-# Prompt elements
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon custom_user root_indicator dir)
-#POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(time battery)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vcs)
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-source  ~/powerlevel9k/powerlevel9k.zsh-theme
-
+POWERLEVEL9K_RAM_BACKGROUND='yellow'
+POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
+POWERLEVEL9K_LOAD_WARNING_BACKGROUND="white"
+POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="white"
+POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="red"
+POWERLEVEL9K_LOAD_WARNING_FOREGROUND="yellow"
+POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="black"
+POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
+POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
+POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
+POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_SUB_ICON=''
+POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_STATUS_VERBOSE=true
+POWERLEVEL9K_STATUS_CROSS=true
+POWERLEVEL9K_TIME_ICON=""
