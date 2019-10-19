@@ -18,13 +18,15 @@ source $ZSH/oh-my-zsh.sh
 ##############
 # Aliases
 ##############
-alias lc="colorls -A"
+alias lc="colorls -A"   
 
 ## Use a long listing format ##
 alias ll='ls -la'
-
+ 
 ## Show hidden files ##
 alias l.='ls -d .* --color=auto'
+
+alias copypath="pwd | pbcopy"
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -33,7 +35,7 @@ alias fgrep='fgrep --color=auto'
 
 ## get rid of command not found ##
 alias cd..='cd ..'
-
+ 
 ## a quick way to get out of current directory ##
 alias ..='cd ..'
 alias ...='cd ../../../'
@@ -67,12 +69,17 @@ alias gitpo='git pull origin'
 
 cd(){
     builtin cd $@
-    ls
+    l
 }
 
 ##############
 # Powerlevel9k Theme
 ##############
+
+user_with_skull() {
+    echo -n "\ufb8a $(whoami)"
+}
+POWERLEVEL9K_CUSTOM_USER="user_with_skull"
 
 POWERLEVEL9K_CONTEXT_TEMPLATE='%n'
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
@@ -89,13 +96,16 @@ POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{014}\u2570%F{cyan}\uF054%F{073}\uF054%F{109}\uF054%f "
 POWERLEVEL9K_VCS_MODIFIED_BACKGROUND='yellow'
 POWERLEVEL9K_VCS_UNTRACKED_BACKGROUND='yellow'
-POWERLEVEL9K_VCS_UNTRACKED_ICON='?'
+POWERLEVEL9K_VCS_UNTRACKED_ICON='\uf0fe'
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator os_icon context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery dir_writable ip vpn_ip ram load background_jobs)
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(root_indicator custom_user dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time battery dir_writable ip vpn_ip ram load background_jobs)
 
 #POWERLEVEL9K_SHORTEN_STRATEGY="truncate_last"
 #POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S %d/%m/%Y}"
 
 POWERLEVEL9K_RAM_BACKGROUND='yellow'
 POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="white"
@@ -107,9 +117,9 @@ POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="black"
 POWERLEVEL9K_LOAD_CRITICAL_VISUAL_IDENTIFIER_COLOR="red"
 POWERLEVEL9K_LOAD_WARNING_VISUAL_IDENTIFIER_COLOR="yellow"
 POWERLEVEL9K_LOAD_NORMAL_VISUAL_IDENTIFIER_COLOR="green"
-POWERLEVEL9K_HOME_ICON=''
+POWERLEVEL9K_HOME_ICON='\uf7db'
 POWERLEVEL9K_HOME_SUB_ICON=''
-POWERLEVEL9K_FOLDER_ICON=''
+POWERLEVEL9K_FOLDER_ICON='\uf07c'
 POWERLEVEL9K_STATUS_VERBOSE=true
 POWERLEVEL9K_STATUS_CROSS=true
 POWERLEVEL9K_TIME_ICON=""
