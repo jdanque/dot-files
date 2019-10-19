@@ -1,0 +1,10 @@
+[
+	{ "keys": ["super+d"], "command": "run_macro_file", "args": {"file": "res://Packages/Default/Delete Line.sublime-macro"} },
+	{ "keys": ["super+b"], "command": "toggle_bookmark" },
+	{ "keys": ["super+alt+down"], "command": "duplicate_line" },
+	{ "keys": ["super+3"], "command": "show_overlay", "args": {"overlay": "command_palette"} },
+	{ "keys": ["super+e"], "command": "show_overlay", "args": {"overlay": "goto", "show_files": true} },
+	{ "keys": ["f1"], "command": "focus_side_bar" },
+	{ "keys": ["f4"], "command": "next_bookmark" },
+	{ "keys": ["f2"], "command": "goto_definition" },
+]
